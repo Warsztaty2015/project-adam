@@ -14,26 +14,30 @@
       var screen = document.getElementById("screen");
       var two = new Two({width: 800, height: 600});
       two.appendTo(screen);
-  
-      var lista= [[20,10],[20,20],[20,30],[30,60]]
-      var zachorowania = [5, 8, 7, ]
-  
-      var rysujKwadrat= function (x,y) {
-      var shape = two.makePolygon (x-5, y-5, x-5, y+5, x+5, y+5, x+5, y-5);
-        return shape
+      var zachorowania = [5, 8, 7, 14, 16, 18, 13, 15, 8, 4, 3, 1, 0, 1, 0, 0];
+      
+      var bottom = 200;
+      var scale = 10;
+      var leftmost = 50;
+      var stepRight = 25;
+      var space = 5;
+      var currentLeftBorder = leftmost;
+      var drawColumn = function(zachorowanie) {
+      var shape = two.makePolygon(currentLeftBorder, bottom - zachorowanie*scale,
+                                  currentLeftBorder + stepRight, bottom - zachorowanie*scale,
+                                  currentLeftBorder + stepRight, bottom,
+                                  currentLeftBorder, bottom);
+      currentLeftBorder = currentLeftBorder + stepRight + space;
+      return shape;
       };
       
-      lista.forEach(function(elem){
-        var rect = rysujKwadrat(elem[0], elem[1])
-        rect.fill = "YellowGreen"
-      
-      });
+       zachorowania.forEach(function(zachorowanie){
+          drawColumn (zachorowanie);
+       });
 
       two.update();
                                       
     };
-                        
-     
   </script>
 </body>
 
