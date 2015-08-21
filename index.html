@@ -14,13 +14,26 @@
       var screen = document.getElementById("screen");
       var two = new Two({width: 800, height: 600});
       two.appendTo(screen);
-      var shape = two.makePolygon(100, 100,
-                                  150, 100,
-                                  150, 150,
-                                  100, 150);
-      shape.fill = "lightblue"
+  
+      var lista= [[20,10],[20,20],[20,30],[30,60]]
+      var zachorowania = [5, 8, 7, ]
+  
+      var rysujKwadrat= function (x,y) {
+      var shape = two.makePolygon (x-5, y-5, x-5, y+5, x+5, y+5, x+5, y-5);
+        return shape
+      };
+      
+      lista.forEach(function(elem){
+        var rect = rysujKwadrat(elem[0], elem[1])
+        rect.fill = "YellowGreen"
+      
+      });
+
       two.update();
+                                      
     };
+                        
+     
   </script>
 </body>
 
